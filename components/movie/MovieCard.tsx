@@ -1,13 +1,13 @@
-/* eslint-disable @next/next/no-img-element */
-import { Card, Typography, CardMedia, CardContent } from '@mui/material';
+import { Card, Typography, CardMedia, CardContent, Box } from '@mui/material';
 import { FC } from 'react';
+import Rating from './Rating';
 
 interface Props {
 	item: any;
 }
 
 const MovieCard: FC<Props> = ({ item }) => {
-	const { title, name, poster_path } = item;
+	const { title, name, poster_path, vote_average } = item;
 	return (
 		<Card
 			sx={{
@@ -15,7 +15,7 @@ const MovieCard: FC<Props> = ({ item }) => {
 				'& .MuiCardContent-root': {
 					paddingBottom: 1,
 					paddingTop: 3,
-					paddingInline:1,
+					paddingInline: 1,
 				},
 			}}
 		>
@@ -28,11 +28,8 @@ const MovieCard: FC<Props> = ({ item }) => {
 				}
 				sx={{ aspectRatio: '1 / 1.5' }}
 			/>
-			<CardContent
-				sx={{
-					// padding: 1,
-				}}
-			>
+			<CardContent>
+				<Rating value={vote_average * 10} />
 				<Typography>{title || name}</Typography>
 			</CardContent>
 		</Card>
