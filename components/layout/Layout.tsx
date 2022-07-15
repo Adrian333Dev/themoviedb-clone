@@ -23,11 +23,10 @@ const Layout: FC<Props> = ({ children, title }) => {
 			<Navbar />
 			<Container
 				sx={{
-					height: '300vh',
-					paddingTop: 3,
+					paddingTop: 1,
 				}}
 			>
-				<Toolbar sx={{display: 'hidden'}} />
+				<Toolbar sx={{ display: 'hidden' }} />
 				{children}
 			</Container>
 		</>

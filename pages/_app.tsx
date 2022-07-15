@@ -7,7 +7,8 @@ import createEmotionCache from '../utility/createEmotionCache';
 import { ColorModeProvider } from '../styles/theme/ColorModeContext';
 import { Provider } from 'react-redux';
 import { setupStore } from '../app/store';
-import { Layout } from '../components/exports';
+
+import '../styles/globals.css';
 
 const clientSideEmotionCache = createEmotionCache();
 
@@ -26,9 +27,7 @@ export default function MyApp(props: MyAppProps) {
 			<ColorModeProvider>
 				<Provider store={store}>
 					<CssBaseline />
-					{/* <Layout> */}
-						<Component {...pageProps} />
-					{/* </Layout> */}
+					<Component {...pageProps} />
 				</Provider>
 			</ColorModeProvider>
 		</CacheProvider>

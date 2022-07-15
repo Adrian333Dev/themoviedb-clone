@@ -5,8 +5,8 @@ import { generateTitle } from './[category]';
 
 const Type = () => {
 	const router = useRouter();
-	const { type } = router.query;
-	// console.log(type);
+	const { type, id } = router.query;
+	console.log(id);
 
 	const { data } = tmdbAPI.useGetDataByTypeQuery({ type });
 	console.log(data);

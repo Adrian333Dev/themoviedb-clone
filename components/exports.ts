@@ -7,3 +7,4 @@ export { default as Discover } from './movie/Discover';
 export { default as MovieCard } from './movie/MovieCard';
 export { default as MovieList } from './movie/MovieList';
 export { default as MoviesPage } from './movie/MoviesPage';
+export { default as MoviePage } from './movie/MoviePage';

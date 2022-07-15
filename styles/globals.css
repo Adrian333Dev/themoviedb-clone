@@ -14,3 +14,7 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.more-icon:hover {
+  color: #1e88e5 !important;
+}

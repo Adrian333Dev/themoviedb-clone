@@ -3,19 +3,47 @@ import CircularProgress, {
 	CircularProgressProps,
 } from '@mui/material/CircularProgress';
 import { Box, Typography } from '@mui/material';
+import { green, grey, lime, pink } from '@mui/material/colors';
+import { palette } from '../../styles/theme/palettes';
 
 const Rating = (props: CircularProgressProps & { value: number }) => {
 	const color = () => {
-		if (props.value < 40) return '#ff0000';
-		if (props.value < 75) return '#ffa500';
-		return '#00ff00';
+		if (!props.value) return grey[500];
+		if (props.value < 40) return pink[600];
+		if (props.value < 75) return lime[500];
+		return green['A700'];
 	};
+
 	return (
-		<Box sx={{ position: 'relative', display: 'inline-flex' }}>
+		<Box
+			sx={{
+				position: 'absolute',
+				bottom: -21,
+				left: 8,
+				display: 'inline-flex',
+				backgroundColor: palette[900],
+				borderRadius: '50%',
+			}}
+		>
 			<CircularProgress
 				sx={{
 					color: color,
+					opacity: 0.2,
+					margin: '2px',
+					position: 'absolute',
 				}}
+				size={37}
+				thickness={2}
+				variant='determinate'
+				value={100}
+			/>
+			<CircularProgress
+				sx={{
+					color: color,
+					margin: '2px',
+				}}
+				size={37}
+				thickness={2}
 				variant='determinate'
 				{...props}
 			/>
@@ -32,12 +60,19 @@ const Rating = (props: CircularProgressProps & { value: number }) => {
 				}}
 			>
 				<Typography
-					variant='caption'
-					component='div'
 					sx={{
-						color: color,
+						color: 'inherit',
+						fontSize: '13px',
+						fontWeight: 'bold',
 					}}
-				>{`${Math.round(props.value)}%`}</Typography>
+				>
+					{props.value || props.value === 0 ? props.value : 'NR'}
+					{props.value ? (
+						<sup style={{ fontSize: 7, position: 'relative', top: 1 }}>%</sup>
+					) : (
+						''
+					)}
+				</Typography>
 			</Box>
 		</Box>
 	);
