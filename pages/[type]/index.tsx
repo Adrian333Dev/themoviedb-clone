@@ -5,11 +5,10 @@ import { generateTitle } from './[category]';
 
 const Type = () => {
 	const router = useRouter();
-	const { type, id } = router.query;
-	console.log(id);
+	const { type } = router.query as { type: string };
 
 	const { data } = tmdbAPI.useGetDataByTypeQuery({ type });
-	console.log(data);
+	// console.log(data);
 
 	return (
 		<Layout title={generateTitle(type)}>

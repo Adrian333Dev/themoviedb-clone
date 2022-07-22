@@ -1,20 +1,24 @@
 import type { NextPage } from 'next';
-import { Layout } from '../components/exports';
+import { Banner, Layout, MoviesSlider } from '../components/exports';
 import { tmdbAPI } from '../services/tmdbAPI';
 
+import { usePalette } from 'react-palette';
+
+
+
 const Home: NextPage = () => {
-	const { data } = tmdbAPI.useGetDataByTypeQuery({});
+	const { data, loading, error } = usePalette('https://picsum.photos/200');
 	// console.log(data);
-		
 	return (
 		<Layout>
-			<h1>Home</h1>
-			<h1>Hello World</h1>
-			<h1>Hello World</h1>
-			<h1>Hello World</h1>
-			<h1>Hello World</h1>
-			<h1>Hello World</h1>
-			<h1>Hello World</h1>
+			<Banner />
+			<MoviesSlider />
+			<MoviesSlider
+				variant='trending'
+				title='Trending'
+				options={['day', 'week']}
+				optionsLabels={['Today', 'This Week']}
+			/>
 		</Layout>
 	);
 };

@@ -1,5 +1,5 @@
 import { useRouter } from 'next/router';
-import { Layout, MoviesPage } from '../../components/exports';
+import { Layout, MoviesPage, MoviePage } from '../../components/exports';
 import { tmdbAPI } from '../../services/tmdbAPI';
 
 import { navList } from '../../constants/nav-data';
@@ -16,19 +16,32 @@ export const generateTitle = (type: any, category?: any) => {
 
 const Category = () => {
 	const router = useRouter();
-	const { type, category } = router.query;
-	// console.log(type, category);
+	const { type, category } = router.query as {
+		type: string;
+		category: string;
+	};
+	const list = navList.find((item: any) => item.type === type);
+	const isCategory = list?.categories.find(
+		(item: any) => item.link === `/${type}/${category}`
+	);
 
 	const { data } = tmdbAPI.useGetDataByTypeQuery({ type, category });
-	// console.log(data);
+	const {data: singleData} = tmdbAPI.useGetDetailsQuery({id: category, type});
+	// console.log(singleData);
 
 	return (
-		<Layout title={generateTitle(type, category)}>
-			<MoviesPage
-				results={data?.results}
-				title={generateTitle(type, category)}
-			/>
-		</Layout>
+		<>
+			{isCategory ? (
+				<Layout title={generateTitle(type, category)}>
+					<MoviesPage
+						results={data?.results}
+						title={generateTitle(type, category)}
+					/>
+				</Layout>
+			) : (
+				<MoviePage id={category} type={type} data={singleData} />
+			)}
+		</>
 	);
 };
 

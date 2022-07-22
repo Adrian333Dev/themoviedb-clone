@@ -14,11 +14,13 @@ export const components = {
 			body: {
 				'& img': {
 					maxWidth: '100%',
+					height: 'auto',
 				},
 			},
 			'& *': {
 				'&::-webkit-scrollbar': {
 					width: '0.4em',
+					height: '0.4em',
 				},
 				'&::-webkit-scrollbar-thumb': {
 					backgroundColor: 'rgba(0,0,0,.1)',

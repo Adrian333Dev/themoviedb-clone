@@ -6,11 +6,11 @@ import { Box, Typography } from '@mui/material';
 import { green, grey, lime, pink } from '@mui/material/colors';
 import { palette } from '../../styles/theme/palettes';
 
-const Rating = (props: CircularProgressProps & { value: number }) => {
+const Rating = (props: CircularProgressProps & { value: number, variant?: string }) => {
 	const color = () => {
 		if (!props.value) return grey[500];
 		if (props.value < 40) return pink[600];
-		if (props.value < 75) return lime[500];
+		if (props.value < 70) return lime[500];
 		return green['A700'];
 	};
 
@@ -45,7 +45,7 @@ const Rating = (props: CircularProgressProps & { value: number }) => {
 				size={37}
 				thickness={2}
 				variant='determinate'
-				{...props}
+				value={props.value}
 			/>
 			<Box
 				sx={{
@@ -66,7 +66,7 @@ const Rating = (props: CircularProgressProps & { value: number }) => {
 						fontWeight: 'bold',
 					}}
 				>
-					{props.value || props.value === 0 ? props.value : 'NR'}
+					{props.value ? props.value : 'NR'}
 					{props.value ? (
 						<sup style={{ fontSize: 7, position: 'relative', top: 1 }}>%</sup>
 					) : (

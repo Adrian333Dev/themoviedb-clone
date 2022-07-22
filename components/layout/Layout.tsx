@@ -23,7 +23,9 @@ const Layout: FC<Props> = ({ children, title }) => {
 			<Navbar />
 			<Container
 				sx={{
-					paddingTop: 1,
+					padding: '0 !important',
+					width: '100%',
+					maxWidth: '1300px !important',
 				}}
 			>
 				<Toolbar sx={{ display: 'hidden' }} />
